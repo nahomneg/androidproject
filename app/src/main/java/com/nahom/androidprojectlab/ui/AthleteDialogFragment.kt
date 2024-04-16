@@ -14,7 +14,7 @@ class AthleteDialogFragment : DialogFragment() {
         val dialogView = inflater.inflate(R.layout.dialog_athletes_fragment, null)
 
         builder.setView(dialogView)
-            .setTitle("Add Sport")
+            .setTitle("Add Athelete")
             .setPositiveButton("Add") { dialog, id ->
                 val name = dialogView.findViewById<EditText>(R.id.editTextAthleteName).text.toString()
                 val sportname = dialogView.findViewById<EditText>(R.id.editTextSportName).text.toString()

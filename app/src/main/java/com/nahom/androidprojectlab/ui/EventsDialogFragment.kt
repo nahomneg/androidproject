@@ -11,10 +11,10 @@ class EventsDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
         val inflater = requireActivity().layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_sport_fragment, null)
+        val dialogView = inflater.inflate(R.layout.dialog_events_fragment, null)
 
         builder.setView(dialogView)
-            .setTitle("Add Sport")
+            .setTitle("Add Event")
             .setPositiveButton("Add") { dialog, id ->
                 val eventName = dialogView.findViewById<EditText>(R.id.editTextHistoryName).text.toString()
                 val date = dialogView.findViewById<EditText>(R.id.editTextDate).text.toString()

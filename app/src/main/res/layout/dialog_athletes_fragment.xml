@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Athlete Name EditText -->
+    <EditText
+        android:id="@+id/editTextAthleteName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Athlete Name"
+        android:inputType="text"/>
+
+    <!-- Sport Name EditText -->
+    <EditText
+        android:id="@+id/editTextSportName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sport Name"
+        android:inputType="text"/>
+
+    <!-- Country EditText -->
+    <EditText
+        android:id="@+id/editTextCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Country"
+        android:inputType="text"/>
+
+    <!-- Best Performance EditText -->
+    <EditText
+        android:id="@+id/editTextBestPerformance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Best Performance"
+        android:inputType="text"/>
+
+    <!-- Medals EditText -->
+    <EditText
+        android:id="@+id/editTextMedals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Medals"
+        android:inputType="text"/>
+
+    <!-- Facts EditText -->
+    <EditText
+        android:id="@+id/editTextFacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Facts"
+        android:inputType="text"/>
+
+</LinearLayout>

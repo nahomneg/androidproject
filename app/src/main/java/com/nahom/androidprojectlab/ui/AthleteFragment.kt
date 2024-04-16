@@ -1,5 +1,6 @@
 package com.nahom.androidprojectlab.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nahom.androidprojectlab.R
 
-class AthletesFragment : Fragment() {
+class AthletesFragment : Fragment(), AthleteDialogFragment.AddAthleteListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var athletesAdapter: AthletesAdapter
@@ -33,9 +35,31 @@ class AthletesFragment : Fragment() {
         athletesAdapter = AthletesAdapter(athletesList)
         recyclerView.adapter = athletesAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val fabAddNews = rootView.findViewById<FloatingActionButton>(R.id.fabAddNews)
+
+        fabAddNews.setOnClickListener {
+            val dialog = AthleteDialogFragment()
+            dialog.show(childFragmentManager, "AddNewsDialog")
+            dialog.setAddAthleteListener(object : AthleteDialogFragment.AddAthleteListener{
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onAthleteAdded(athlete: Athlete) {
+                    athletesList.add(0,athlete)
+                    recyclerView.adapter?.notifyDataSetChanged()
+                }
+            })
+        }
 
         return rootView
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onAthleteAdded(athlete: Athlete) {
+        athletesList.add(athlete)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+
 }
 
 data class Athlete(

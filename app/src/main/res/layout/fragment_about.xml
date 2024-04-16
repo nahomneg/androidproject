@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/profile_pic"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/profileImageView"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp"/>
+        android:text="John Doe"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/bioTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
-</LinearLayout>
+        android:layout_below="@id/nameTextView"
+        android:textSize="16sp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        android:gravity="center"/>
+</RelativeLayout>

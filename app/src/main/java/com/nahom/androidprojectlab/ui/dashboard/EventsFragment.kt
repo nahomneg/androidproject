@@ -1,5 +1,6 @@
 package com.nahom.androidprojectlab.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nahom.androidprojectlab.R
 import com.nahom.androidprojectlab.ui.Event
 import com.nahom.androidprojectlab.ui.EventsAdapter
+import com.nahom.androidprojectlab.ui.EventsDialogFragment
+import com.nahom.androidprojectlab.ui.SportsDialogFragment
 
-class EventsFragment : Fragment() {
+class EventsFragment : Fragment(), EventsDialogFragment.AddEventListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var eventsAdapter: EventsAdapter
@@ -33,11 +37,30 @@ class EventsFragment : Fragment() {
         eventsList.add(Event("UEFA Champions League Final", "The UEFA Champions League Final is the most prestigious club football match in the world.", "May 29, 2024"))
         eventsList.add(Event("NBA Finals", "The NBA Finals is the championship series of the National Basketball Association.", "June 5 - June 20, 2024"))
 
-        recyclerView = rootView.findViewById(R.id.recyclerView2)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
         eventsAdapter = EventsAdapter(eventsList)
         recyclerView.adapter = eventsAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val fabAddNews = rootView.findViewById<FloatingActionButton>(R.id.fabAddNews)
 
+        fabAddNews.setOnClickListener {
+            val dialog = EventsDialogFragment()
+            dialog.show(childFragmentManager, "AddNewsDialog")
+            dialog.setAddEventListener(object : EventsDialogFragment.AddEventListener {
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onEventAdded(event: Event) {
+                    eventsList.add(0,event)
+                    recyclerView.adapter?.notifyDataSetChanged()
+                }
+            })
+        }
         return rootView
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onEventAdded(event: Event) {
+        eventsList.add(event)
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 }
